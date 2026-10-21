@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-/* Custom Scrollbar */
+
+
+
+
 .custom-scrollbar::-webkit-scrollbar {
   height: 4px;
   width: 4px;
@@ -16,7 +19,7 @@
   background-color: #94a3b8;
 }
 
-/* Hide scrollbar completely while maintaining scrolling functionality */
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
