@@ -46,10 +46,10 @@ const Sidebar = ({ isOpen, onClose }) => {
           <NavLink to="/" onClick={onClose} className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity min-w-0">
             <img src="/img.png" alt="PDE Logo" className="w-8 h-8 object-contain drop-shadow shrink-0" />
             <div className="min-w-0">
-              <h1 className="text-[13.5px] font-bold text-slate-100 tracking-tight leading-none truncate">
+              <h1 className="text-[13.5px] font-medium text-slate-100 tracking-tight leading-none truncate">
                 Prospect Data Engine
               </h1>
-              <p className="text-[10px] font-medium text-slate-500 tracking-wide mt-1 truncate">
+              <p className="text-[10px] font-normal text-slate-400 tracking-wide mt-1 truncate">
                 Centralized Data Hub
               </p>
             </div>

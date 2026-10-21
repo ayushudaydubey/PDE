@@ -61,14 +61,11 @@ const RegisterPage = () => {
       api.post('/auth/register', data),
 
     onSuccess: (response) => {
-      queryClient.setQueryData(
-        ['authUser'],
-        response.data.user
-      );
+      queryClient.invalidateQueries({ queryKey: ['users'] });
 
-      toast.success('Registration successful');
+      toast.success(response.data?.message || 'User registered successfully');
 
-      navigate('/');
+      navigate('/users');
     },
 
     onError: (error) => {
@@ -314,8 +311,8 @@ const RegisterPage = () => {
               className="w-full h-12 rounded-xl bg-black text-white text-sm font-medium hover:opacity-90 transition flex items-center justify-center gap-2"
             >
               {registerMutation.isPending
-                ? 'Creating account...'
-                : 'Create Account'}
+                ? 'Creating user...'
+                : 'Create User'}
 
               {!registerMutation.isPending && (
                 <ArrowRight className="w-4 h-4" />
@@ -328,17 +325,12 @@ const RegisterPage = () => {
           {/* Footer */}
           <div className="mt-8 text-center">
 
-            <p className="text-sm text-gray-500">
-              Already have an account?{' '}
-
-              <Link
-                to="/login"
-                className="text-black font-medium hover:underline"
-              >
-                Sign In
-              </Link>
-
-            </p>
+            <Link
+              to="/users"
+              className="text-gray-600 hover:text-black font-medium text-sm inline-flex items-center gap-1.5 transition-colors"
+            >
+              ← Back to Users
+            </Link>
 
           </div>
 

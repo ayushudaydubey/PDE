@@ -11,15 +11,15 @@ const DashboardLayout = () => {
   const isOverviewRoute = location.pathname === '/' || location.pathname === '/about';
   const isFullWidth = !isAuthenticated && isOverviewRoute;
 
-  let mainClass = 'bg-gray-50 p-3 sm:p-6 pt-20 sm:pt-22';
+  let mainClass = 'bg-white p-3 sm:p-6 pt-20 sm:pt-22';
   if (isFullWidth) {
     mainClass = 'p-0 bg-white';
   } else if (isOverviewRoute) {
-    mainClass = 'bg-gray-50 px-0 pb-0 pt-20 sm:pt-22';
+    mainClass = 'bg-white px-0 pb-0 pt-20 sm:pt-22';
   }
 
   return (
-    <div className="flex h-screen w-full bg-gray-50 overflow-hidden font-sans text-gray-900">
+    <div className="flex h-screen w-full bg-white overflow-hidden font-sans text-gray-900">
       {isAuthenticated && (!isFullWidth || sidebarOpen) && (
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       )}

@@ -47,11 +47,11 @@ const Navbar = ({ onToggleSidebar, showMenuButton }) => {
           >
             <img src="/img.png" alt="PDE Logo" className="h-6 sm:h-8 w-auto object-contain shrink-0" />
             <div className="flex items-center space-x-1 sm:space-x-2 min-w-0">
-              <span className="font-extrabold bg-gradient-to-r from-zinc-950 to-zinc-600 bg-clip-text text-transparent text-xs sm:text-sm tracking-tight truncate">
+              <span className="font-medium bg-gradient-to-r from-zinc-900 to-zinc-600 bg-clip-text text-transparent text-xs sm:text-sm tracking-tight truncate">
                 Prospect Data Engine
               </span>
-              <span className="text-slate-400 font-semibold shrink-0 hidden sm:inline">/</span>
-              <span className="bg-slate-900 text-white font-mono font-semibold px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-xs tracking-wide shrink-0 truncate max-w-[100px] sm:max-w-none">
+              <span className="text-slate-400 font-normal shrink-0 hidden sm:inline">/</span>
+              <span className="bg-slate-900 text-white font-mono font-medium px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-xs tracking-wide shrink-0 truncate max-w-[100px] sm:max-w-none">
                 {currentPath}
               </span>
             </div>

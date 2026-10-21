@@ -76,7 +76,7 @@ const DashboardPage = () => {
 
 
   return (
-    <div className="min-h-screen bg-[#f3f4f6] p-6 lg:p-8 font-sans antialiased text-slate-900">
+    <div className="w-full min-h-full bg-white font-sans antialiased text-slate-900">
 
       {/* Upper Module Navigation & RBAC Node Info */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-5 border-b-2 border-slate-200 mb-8 gap-4">

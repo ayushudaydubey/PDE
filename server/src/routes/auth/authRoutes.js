@@ -2,7 +2,7 @@ const express = require("express");
 
 const { login, register, logout, meController, updatePassword, forgotPassword, verifyOTP, resetPassword } = require("../../controllers/auth/authController");
 const refreshAccessToken = require("../../utils/refreshToken");
-const { protect } = require("../../middleware/authMiddleware");
+const { protect, authorize } = require("../../middleware/authMiddleware");
 const rateLimit = require("express-rate-limit");
 
 const otpLimiter = rateLimit({
@@ -19,7 +19,7 @@ const router = express.Router();
 
 
 router.post("/login", login);
-router.post("/register", register);
+router.post("/register", protect, authorize("admin", "superadmin"), register);
 router.post("/refresh-token", refreshAccessToken);
 router.get("/me", protect, meController);
 router.post("/logout", protect, logout);

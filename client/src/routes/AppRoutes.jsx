@@ -42,7 +42,11 @@ const AppRoutes = () => {
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route
         path="/register"
-        element={<RegisterPage />}
+        element={
+          <ProtectedRoute allowedRoles={['admin', 'superadmin']}>
+            <RegisterPage />
+          </ProtectedRoute>
+        }
       />
 
       {/* Main Layout Route - Public so unauthenticated users see the sidebar */}

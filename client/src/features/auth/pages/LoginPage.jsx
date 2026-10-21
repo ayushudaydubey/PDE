@@ -252,18 +252,9 @@ const LoginPage = () => {
 
           {/* Footer */}
           <div className="mt-8 text-center">
-
             <p className="text-sm text-gray-500">
-              Don’t have an account?{' '}
-
-              <Link
-                to="/register"
-                className="text-black font-medium hover:underline"
-              >
-                Create account
-              </Link>
+              Need an account? Please contact your system administrator.
             </p>
-
           </div>
 
         </div>

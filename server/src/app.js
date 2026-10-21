@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
@@ -21,24 +22,21 @@ const errorMiddleware = require("./middleware/errorMiddleware");
 
 const app = express();
 
-
-// ======================
-// BASIC MIDDLEWARE
-// ======================
 app.use(cookieParser());
 app.use(express.json());
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+  })
+);
 app.use(compression());
 
-
-// ======================
-// CORS CONFIG (FIXED)
-// ======================
 const whitelist = [
   "http://localhost:5173",
-
-  "https://pde.gnosysdigital.com",
-  "http://63.143.38.172",
+  
+  "https://pde-a7wj.onrender.com",
+  "http://pde-a7wj.onrender.com",
 ];
 
 const corsOptions = {
@@ -62,33 +60,21 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-
-// ======================
-// APPLY CORS (ONLY ONCE)
-// ======================
 app.use(cors(corsOptions));
-
-
-// ======================
-// PRE-FLIGHT FIX (IMPORTANT)
-// ======================
 app.options(/.*/, cors(corsOptions));
 
+// Serve static frontend assets from public directory
+app.use(express.static(path.join(__dirname, "../public")));
 
-// ======================
-// TEST ROUTE
-// ======================
-app.get("/", (req, res) => {
+// Backend Healthcheck endpoint
+app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
     message: "PDE Backend Running",
   });
 });
 
-
-// ======================
-// ROUTES
-// ======================
+// API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/company", companyRoutes);
 app.use("/api/import", importRoutes);
@@ -102,14 +88,25 @@ app.use("/api/activities", activityRoutes);
 app.use("/api/follow-ups", followUpRoutes);
 app.use("/api/notifications", notificationRoutes);
 
+// SPA Fallback: Send index.html for any frontend client routes
+app.get("*name", (req, res, next) => {
+  // If request is meant for an unhandled API endpoint, return 404 JSON instead of index.html
+  if (req.path.startsWith("/api")) {
+    return res.status(404).json({
+      success: false,
+      message: `API route not found: ${req.originalUrl}`,
+    });
+  }
 
-// ======================
-// ERROR HANDLER
-// ======================
+  const indexPath = path.join(__dirname, "../public/index.html");
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      next(err);
+    }
+  });
+});
+
+// Global Error Handler
 app.use(errorMiddleware);
 
-
-// ======================
-// EXPORT
-// ======================
 module.exports = app;
