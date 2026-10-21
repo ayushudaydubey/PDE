@@ -1,13 +1,8 @@
 import axios from 'axios';
 
-// Default to a relative `/api` path in development so Vite can proxy requests.
-// In production, prefer an env var `VITE_API_URL`. If the page is loaded
-// over HTTPS and the provided base URL uses HTTP, upgrade it to HTTPS to
-// avoid mixed-content blocking by browsers.
-let baseURL = 'http://pde-a7wj.onrender.com'
-if (typeof window !== 'undefined' && window.location.protocol === 'https:' && typeof baseURL === 'string' && baseURL.startsWith('http:')) {
-  baseURL = baseURL.replace(/^http:/, 'https:');
-}
+// For single deployment on Render, frontend and backend share the same domain,
+// so requests to `/api` automatically route to the backend's `/api/*` endpoints.
+let baseURL = import.meta.env.VITE_API_URL || '/api';
 
 const api = axios.create({
   baseURL,
