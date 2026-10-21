@@ -1,0 +1,21 @@
+2026-05-25T06:59:28.573Z - TypeError: Class constructor ObjectId cannot be invoked without 'new'
+    at C:\Users\HP\Desktop\Prospect Data Engine\server\src\services\companyService.js:15:53
+    at Array.map (<anonymous>)
+    at Object.bulkInsertCompanies (C:\Users\HP\Desktop\Prospect Data Engine\server\src\services\companyService.js:6:25)
+    at uploadHandler (C:\Users\HP\Desktop\Prospect Data Engine\server\src\controllers\import\uploadController.js:218:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+2026-05-25T07:00:07.128Z - TypeError: Class constructor ObjectId cannot be invoked without 'new'
+    at C:\Users\HP\Desktop\Prospect Data Engine\server\src\services\companyService.js:15:53
+    at Array.map (<anonymous>)
+    at Object.bulkInsertCompanies (C:\Users\HP\Desktop\Prospect Data Engine\server\src\services\companyService.js:6:25)
+    at uploadHandler (C:\Users\HP\Desktop\Prospect Data Engine\server\src\controllers\import\uploadController.js:218:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+2026-05-25T07:09:14.403Z - TypeError: Class constructor ObjectId cannot be invoked without 'new'
+    at C:\Users\HP\Desktop\Prospect Data Engine\server\src\services\companyService.js:15:53
+    at Array.map (<anonymous>)
+    at Object.bulkInsertCompanies (C:\Users\HP\Desktop\Prospect Data Engine\server\src\services\companyService.js:6:25)
+    at uploadHandler (C:\Users\HP\Desktop\Prospect Data Engine\server\src\controllers\import\uploadController.js:218:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
