@@ -21,12 +21,11 @@ api.interceptors.response.use(
     ) {
       originalRequest._retry = true;
       try {
-        // Use the same `api` instance so the request goes through the dev proxy
-        // and includes cookies (withCredentials is already enabled on `api`).
+
         await api.post('/auth/refresh-token', {}, { withCredentials: true });
         return api(originalRequest);
       } catch (refreshError) {
-        // Let the application handle the auth failure (e.g., via ProtectedRoute redirect)
+
         return Promise.reject(refreshError);
       }
     }
@@ -34,7 +33,7 @@ api.interceptors.response.use(
   }
 );
 
-// Rewrite any absolute http URLs to https when the page is served over HTTPS
+
 api.interceptors.request.use(
   (config) => {
     try {
@@ -50,7 +49,7 @@ api.interceptors.request.use(
         }
       }
     } catch (e) {
-      // ignore
+
     }
 
     return config;
