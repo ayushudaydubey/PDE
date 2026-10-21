@@ -88,23 +88,12 @@ app.use("/api/activities", activityRoutes);
 app.use("/api/follow-ups", followUpRoutes);
 app.use("/api/notifications", notificationRoutes);
 
-// SPA Fallback: Send index.html for any frontend client routes
-app.get("*name", (req, res, next) => {
-  // If request is meant for an unhandled API endpoint, return 404 JSON instead of index.html
-  if (req.path.startsWith("/api")) {
-    return res.status(404).json({
-      success: false,
-      message: `API route not found: ${req.originalUrl}`,
-    });
-  }
 
-  const indexPath = path.join(__dirname, "../public/index.html");
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      next(err);
-    }
-  });
-});
+app.get("*name", (req, res) =>
+  req.path.startsWith("/api")
+    ? res.status(404).json({ message: "API not found" })
+    : res.sendFile(path.join(__dirname, "../public/index.html"))
+);
 
 // Global Error Handler
 app.use(errorMiddleware);
